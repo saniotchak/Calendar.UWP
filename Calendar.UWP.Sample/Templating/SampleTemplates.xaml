@@ -1,0 +1,71 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:calendar="using:Calendar.UWP"
+    xmlns:local="using:Calendar.UWP.Sample.Templating">
+
+    <calendar:BoolToColorConverter x:Key="BoolToColorConverter"/>
+    <calendar:DayToBorderThicknessConverter x:Key="DayToBorderThicknessConverter"/>
+    <Color x:Key="VioletColor">#db1b5a</Color>
+    <SolidColorBrush x:Key="VioletBrush" Color="{StaticResource VioletColor}"/>
+
+    <local:SampleCalendarTemplateSelector x:Key="SampleCalendarTemplateSelector">
+        <local:SampleCalendarTemplateSelector.DefaultTemplate>
+            <DataTemplate>
+                <Grid Background="{x:Null}">
+                    <TextBlock Text="{Binding Label}"
+                               HorizontalAlignment="Left"
+                               VerticalAlignment="Bottom"
+                               Margin="10 0 0 10"
+                               Foreground="{Binding IsInOtherView, Converter={StaticResource BoolToColorConverter}}"/>
+                    <Border BorderBrush="{StaticResource VioletBrush}"
+                            Margin="0 0 1 1"
+                            BorderThickness="{Binding Date, Converter={StaticResource DayToBorderThicknessConverter}}" Canvas.ZIndex="10">
+                        <Border.RenderTransform>
+                            <TranslateTransform X="0" Y="0"/>
+                        </Border.RenderTransform>
+                    </Border>
+                </Grid>
+            </DataTemplate>
+        </local:SampleCalendarTemplateSelector.DefaultTemplate>
+        <local:SampleCalendarTemplateSelector.GreenTemplate>
+            <DataTemplate>
+                <Grid Background="{x:Null}">
+                    <Grid Background="Green" Opacity="0.5"/>
+                    <TextBlock Text="{Binding Label}"
+                               HorizontalAlignment="Left"
+                               VerticalAlignment="Bottom"
+                               Margin="10 0 0 10"
+                               Foreground="{Binding IsInOtherView, Converter={StaticResource BoolToColorConverter}}"/>
+                    <Border BorderBrush="{StaticResource VioletBrush}"
+                            Margin="0 0 1 1"
+                            BorderThickness="{Binding Date, Converter={StaticResource DayToBorderThicknessConverter}}" Canvas.ZIndex="10">
+                        <Border.RenderTransform>
+                            <TranslateTransform X="0" Y="0"/>
+                        </Border.RenderTransform>
+                    </Border>
+                </Grid>
+            </DataTemplate>
+        </local:SampleCalendarTemplateSelector.GreenTemplate>
+        <local:SampleCalendarTemplateSelector.OrangeTemplate>
+            <DataTemplate>
+                <Grid Background="{x:Null}">
+                    <Grid Background="Orange" Opacity="0.5"/>
+                    <TextBlock Text="{Binding Label}"
+                               HorizontalAlignment="Left"
+                               VerticalAlignment="Bottom"
+                               Margin="10 0 0 10"
+                               Foreground="{Binding IsInOtherView, Converter={StaticResource BoolToColorConverter}}"/>
+                    <Border BorderBrush="{StaticResource VioletBrush}"
+                            Margin="0 0 1 1"
+                            BorderThickness="{Binding Date, Converter={StaticResource DayToBorderThicknessConverter}}" Canvas.ZIndex="10">
+                        <Border.RenderTransform>
+                            <TranslateTransform X="0" Y="0"/>
+                        </Border.RenderTransform>
+                    </Border>
+                </Grid>
+            </DataTemplate>
+        </local:SampleCalendarTemplateSelector.OrangeTemplate>
+    </local:SampleCalendarTemplateSelector>
+    
+</ResourceDictionary>

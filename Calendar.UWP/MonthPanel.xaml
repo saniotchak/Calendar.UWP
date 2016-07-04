@@ -1,0 +1,105 @@
+﻿<UserControl
+    x:Class="Calendar.UWP.MonthPanel"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Calendar.UWP"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    d:DesignHeight="400"
+    d:DesignWidth="400">
+
+    <UserControl.Resources>
+        <Color x:Key="AppMidColor">#737272</Color>
+        <SolidColorBrush x:Key="AppMidBrush" Color="{StaticResource AppMidColor}"/>
+        <local:MonthDataDesign x:Key="DesignData"/>
+        <local:BoolToColorConverter x:Key="BoolToColorConverter"/>
+        <Style x:Key="RowLine" TargetType="Border">
+            <Setter Property="Grid.ColumnSpan" Value="7"/>
+            <Setter Property="BorderBrush" Value="{StaticResource AppMidBrush}"/>
+            <Setter Property="BorderThickness" Value="0 0 0 1"/>
+        </Style>
+        <Style x:Key="ColumnLine" TargetType="Border">
+            <Setter Property="Grid.RowSpan" Value="6"/>
+            <Setter Property="BorderBrush" Value="{StaticResource AppMidBrush}"/>
+            <Setter Property="BorderThickness" Value="0 0 1 0"/>
+        </Style>
+    </UserControl.Resources>
+
+    <Grid d:DataContext="{StaticResource DesignData}">       
+        
+        <local:GridAwareItemsControl ItemsSource="{Binding Days}"
+                                     >
+            <local:GridAwareItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                    </Grid>
+                </ItemsPanelTemplate>
+            </local:GridAwareItemsControl.ItemsPanel>
+            <local:GridAwareItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <ContentPresenter 
+                        Grid.Row="{Binding RowIndex}" 
+                        Grid.Column="{Binding ColumnIndex}"    
+                        Padding="0"
+                        BorderThickness="0"
+                        Background="Transparent"
+                        ContentTemplateSelector="{Binding DayTemplateSelector}"
+                        Tapped="ItemTappedHandler"
+                        >                        
+                    </ContentPresenter>
+                </DataTemplate>
+            </local:GridAwareItemsControl.ItemTemplate>
+        </local:GridAwareItemsControl>
+
+        <Grid Grid.Row="2">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Border Grid.Row="0" Style="{StaticResource RowLine}"/>
+            <Border Grid.Row="1" Style="{StaticResource RowLine}"/>
+            <Border Grid.Row="2" Style="{StaticResource RowLine}"/>
+            <Border Grid.Row="3" Style="{StaticResource RowLine}"/>
+            <Border Grid.Row="4" Style="{StaticResource RowLine}"/>
+
+            <Border Grid.Column="0" Style="{StaticResource ColumnLine}"/>
+            <Border Grid.Column="1" Style="{StaticResource ColumnLine}"/>
+            <Border Grid.Column="2" Style="{StaticResource ColumnLine}"/>
+            <Border Grid.Column="3" Style="{StaticResource ColumnLine}"/>
+            <Border Grid.Column="4" Style="{StaticResource ColumnLine}"/>
+            <Border Grid.Column="5" Style="{StaticResource ColumnLine}"/>
+        </Grid>
+    </Grid>
+    
+</UserControl>

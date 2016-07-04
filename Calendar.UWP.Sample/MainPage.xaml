@@ -1,0 +1,25 @@
+﻿<Page
+    x:Class="Calendar.UWP.Sample.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Calendar.UWP.Sample"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:calendar="using:Calendar.UWP"
+    xmlns:templating="using:Calendar.UWP.Sample.Templating"
+    xmlns:data="using:Calendar.UWP.Sample.Data"
+    mc:Ignorable="d">
+
+    <Page.Resources>
+        <data:SampleDataSource x:Key="SampleDataSource"/>
+    </Page.Resources>
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <calendar:Calendar x:Name="SampleCalendar"
+                           Margin="20" 
+                           SelectionAnimationIsOn="True"
+                           DataContext="{StaticResource SampleDataSource}"
+                           DayTemplateSelector="{StaticResource SampleCalendarTemplateSelector}"
+                           DayTapped="DayTappedHandler"/>
+    </Grid>
+</Page>
